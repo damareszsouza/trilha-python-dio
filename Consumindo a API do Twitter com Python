@@ -1,0 +1,56 @@
+DESCRIÇÃO
+Expanda seus conhecimentos sobre Python, Banco de Dados e APIs. Para isso, vamos criar um projeto prático com o objetivo de consumir a API REST do Twitter. Nesse sentido, uma série de boas práticas e dicas foram apresentadas pelo nosso expert. Entre elas o Tweepy, que reduziu a complexidade no consumo da API do Twitter. 
+
+
+
+pip install tweepy
+Autenticar-
+Depois de conseguirtweepy.
+
+Pitão
+
+cópia de
+import tweepy
+
+consumer_key = 'sua_consumer_key'
+consumer_secret = 'seu_consumer_secret'
+access_token = 'seu_access_token'
+access_token_secret = 'seu_access_token_secret'
+
+auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+auth.set_access_token(access_token, access_token_secret)
+
+api = tweepy.API(auth)
+usando
+Agora que você
+
+Pitão
+
+cópia de
+tweets = api.user_timeline(screen_name='nome_do_usuario', count=10, tweet_mode='extended')
+
+for tweet in tweets:
+    print(tweet.full_text)
+Este código irá
+
+armazenar
+Depois de
+
+Pitão
+
+cópia de
+import sqlite3
+
+conn = sqlite3.connect('twitter.db')
+c = conn.cursor()
+
+c.execute('''CREATE TABLE IF NOT EXISTS tweets 
+             (id_str TEXT, created_at TEXT, text TEXT, user_id_str TEXT, user_screen_name TEXT)''')
+
+for tweet in tweets:
+    c.execute('''INSERT INTO tweets (id_str, created_at, text, user_id_str, user_screen_name) 
+                 VALUES (?, ?, ?, ?, ?)''', 
+              (tweet.id_str, tweet.created_at, tweet.full_text, tweet.user.id_str, tweet.user.screen_name))
+
+conn.commit()
+conn.close()
