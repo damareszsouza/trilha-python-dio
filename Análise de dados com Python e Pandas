@@ -39,3 +39,59 @@ df.plot(kind='bar', x='nome', y='salario')
 
 # Exibe o gráfico
 plt.show()
+ #exemplo 2 
+ 
+ 
+ Carregando
+Pitão
+
+cópia de
+import pandas as pd
+
+# Carrega um arquivo CSV
+dados = pd.read_csv('dados.csv')
+Verificando informações
+Pitão
+
+cópia de
+# Imprime as primeiras linhas dos dados
+print(dados.head())
+
+# Imprime as últimas linhas dos dados
+print(dados.tail())
+
+# Imprime informações sobre as colunas dos dados
+print(dados.info())
+
+# Imprime estatísticas descritivas dos dados
+print(dados.describe())
+manipulando
+Pitão
+
+cópia de
+# Selecionando colunas específicas
+colunas = ['coluna1', 'coluna2', 'coluna3']
+dados_selecionados = dados[colunas]
+
+# Filtando dados por uma condição
+dados_filtrados = dados[dados['coluna1'] > 10]
+
+# Agrupando dados por uma coluna e calculando a média de outra coluna
+dados_agrupados = dados.groupby('coluna1')['coluna2'].mean()
+Visualizando
+Pitão
+
+cópia de
+import matplotlib.pyplot as plt
+
+# Cria um histograma de uma coluna dos dados
+dados['coluna1'].hist(bins=10)
+
+# Cria um gráfico de dispersão de duas colunas dos dados
+dados.plot(kind='scatter', x='coluna1', y='coluna2')
+
+# Cria um gráfico de linha de uma coluna dos dados
+dados.plot(kind='line', x='coluna1', y='coluna2')
+
+# Exibe os gráficos
+plt.show()
