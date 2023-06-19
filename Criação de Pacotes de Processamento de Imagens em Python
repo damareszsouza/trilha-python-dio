@@ -1,0 +1,74 @@
+# criação 
+Neste projeto você aprenderá a criar o seu primeiro pacote de processamento de imagens em Python e disponibilizá-lo no repositório Pypi. Assim você poderá reutilizá-lo facilmente e compartilhá-lo com outras pessoas. A especialista também vai mostrar um exemplo de pacote para processamento de imagens.
+
+pip install Pillow
+
+#arquivoprocessamento_imagens.pypode
+
+from PIL import Image
+
+def carregar_imagem(caminho):
+    return Image.open(caminho)
+
+def salvar_imagem(imagem, caminho):
+    imagem.save(caminho)
+
+def redimensionar_imagem(imagem, tamanho):
+    return imagem.resize(tamanho)
+
+def cortar_imagem(imagem, caixa):
+    return imagem.crop(caixa)
+
+def aplicar_filtro(imagem, filtro):
+    return imagem.filter(filtro)
+    
+    
+    # test
+    
+    from processamento_imagens import *
+
+def test_carregar_imagem():
+    imagem = carregar_imagem('imagem.jpg')
+    assert imagem.size == (640, 480)
+
+def test_redimensionar_imagem():
+    imagem = carregar_imagem('imagem.jpg')
+    imagem_redimensionada = redimensionar_imagem(imagem, (320, 240))
+    assert imagem_redimensionada.size == (320, 240)
+
+def test_cortar_imagem():
+    imagem = carregar_imagem('imagem.jpg')
+    caixa = (0, 0, 320, 240)
+    imagem_cortada = cortar_imagem(imagem, caixa)
+    assert imagem_cortada.size == (320, 
+    
+    
+    # Pacote de processamento de imagens
+
+Este pacote contém funções para carregar, salvar, redimensionar, cortar e aplicar filtros em imagens.
+
+## Instalação
+
+
+
+## Utilização
+
+```python
+from processamento_imagens import *
+
+# Carrega uma imagem
+imagem = carregar_imagem('imagem.jpg')
+
+# Redimensiona a imagem
+imagem_redimensionada = redimensionar_imagem(imagem, (320, 240))
+
+# Salva a imagem
+salvar_imagem(imagem_redimensionada, 'imagem_redimensionada.jpg')
+
+# distribuição 
+
+6. Distribuição do pacote
+
+O pacote pode ser distribuído para outros usuários através do PyPI (Python Package Index), seguindo as instruções disponíveis na documentação do PyPI.
+
+Esse é um exemplo simples de como criar um pacote de processamento de imagens em Python. É importante lembrar que o processo pode variar dependendo das necessidades do projeto e do público-alvo do pacote
