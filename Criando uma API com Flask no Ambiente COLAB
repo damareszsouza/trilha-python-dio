@@ -1,0 +1,81 @@
+Instalar
+criar
+Retornar
+Aqui está
+
+Pitão
+
+cópia de
+from flask import Flask, jsonify
+import pandas as pd
+
+app = Flask(__name__)
+
+@app.route('/planilha')
+def ler_planilha():
+    # Lê a planilha de dados no formato JSON
+    dados = pd.read_json('dados.json')
+
+    # Converte os dados para um dicionário
+    dados_dict = dados.to_dict()
+
+    # Retorna os dados como resposta da rota
+    return jsonify(dados_dict)
+
+if __name__ == '__main__':
+    app.run()
+Nesse/planilhaThatjsonifyfazer Frasco.
+
+Para executarapp.pyeflask runnãohttp://localhost:5000/planilha.
+
+Pára/planilhapeladados.json,http://localhost:5000/planilhae
+
+Criando uma API com Flask no Ambiente COLAB
+
+Para criar
+
+Instalar
+criar
+Retornar como
+Executar
+aqui
+
+Pitão
+
+cópia de
+!pip install flask pandas
+
+from flask import Flask, jsonify
+import pandas as pd
+
+app = Flask(__name__)
+
+@app.route('/planilha')
+def ler_planilha():
+    # Lê a planilha de dados no formato JSON
+    dados = pd.read_json('dados.json')
+
+    # Converte os dados para um dicionário
+    dados_dict = dados.to_dict()
+
+    # Retorna os dados como resposta da rota
+    return jsonify(dados_dict)
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=8080)
+Nesse!pip install. Em/planilhaThatjsonifyfazer Frasco.
+
+Páraapp.pye
+
+Pitão
+
+cópia de
+from google.colab import drive
+drive.mount('/content/drive')
+
+%cd /content/drive/MyDrive/diretorio_da_planilha
+
+!python app.py
+Nesse código,app.pycom o comando!python.
+
+Apóshttp://localhost:8080/planilha./planilhapela
