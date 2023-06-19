@@ -1,0 +1,38 @@
+DESCRIÇÃO
+Neste desafio você irá implementar uma aplicação de integração com SQLite com base em um esquema relacional disponibilizado. Sendo assim, utilize o esquema dentro do contexto de cliente e conta para criar as classes de sua API. Essas classes irão representar as tabelas do banco de dados relacional dentro da aplicação.
+
+import sqlite3
+
+class Cliente:
+    def __init__(self, nome, cpf, endereco, telefone):
+        self.nome = nome
+        self.cpf = cpf
+        self.endereco = endereco
+        self.telefone = telefone
+
+    def salvar_no_banco(self):
+        conn = sqlite3.connect('banco.db')
+        cursor = conn.cursor()
+        cursor.execute("""
+            INSERT INTO cliente (nome, cpf, endereco, telefone)
+            VALUES (?, ?, ?, ?)
+        """, (self.nome, self.cpf, self.endereco, self.telefone))
+        conn.commit()
+        conn.close()
+
+class Conta:
+    def __init__(self, numero, cliente_id, saldo=0, limite=500):
+        self.numero = numero
+        self.cliente_id = cliente_id
+        self.saldo = saldo
+        self.limite = limite
+
+    def salvar_no_banco(self):
+        conn = sqlite3.connect('banco.db')
+        cursor = conn.cursor()
+        cursor.execute("""
+            INSERT INTO conta (numero, cliente_id, saldo, limite)
+            VALUES (?, ?, ?, ?)
+        """, (self.numero, self.cliente_id, self.saldo, self.limite))
+        conn.commit()
+        conn.close()
