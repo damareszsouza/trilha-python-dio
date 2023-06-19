@@ -1,0 +1,41 @@
+import pandas as pd
+
+# Carrega um arquivo CSV de exemplo
+df = pd.read_csv('exemplo.csv')
+
+# Imprime as primeiras linhas do DataFrame
+print(df.head())
+
+# Imprime a quantidade de linhas e colunas do DataFrame
+print(df.shape)
+
+# Imprime informações sobre as colunas do DataFrame
+print(df.info())
+
+# Imprime estatísticas descritivas do DataFrame
+print(df.describe())
+
+# Seleciona as linhas do DataFrame que atendem a uma condição
+df_filtrado = df[df['coluna'] > 5]
+
+# Agrupa os dados por uma coluna e calcula a média das outras colunas
+df_agrupado = df.groupby('coluna').mean()
+
+# Salva o DataFrame em um arquivo CSV
+df.to_csv('exemplo_filtrado.csv', index=False)
+
+exemplo 1 #
+ import pandas as pd
+import matplotlib.pyplot as plt
+
+# Cria um DataFrame de exemplo
+dados = {'nome': ['Alice', 'Bob', 'Charlie', 'David', 'Eva'],
+         'idade': [25, 30, 35, 40, 45],
+         'salario': [5000, 6000, 7000, 8000, 9000]}
+df = pd.DataFrame(dados)
+
+# Cria um gráfico de barras do salário por nome
+df.plot(kind='bar', x='nome', y='salario')
+
+# Exibe o gráfico
+plt.show()
