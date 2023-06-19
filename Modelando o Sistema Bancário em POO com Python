@@ -1,0 +1,95 @@
+DESCRIÇÃO
+Neste desafio iremos atualizar a implementação do sistema bancário, para armazenar os dados de clientes e contas bancárias em objetos ao invés de dicionários. O código deve seguir o modelo de classes UML.
+
+_______________              _______________
+|    Cliente   |              |    Conta     |
+|_____________|              |______________|
+| - nome       |              | - numero     |
+| - cpf        |              | - cliente    |
+| - endereco   |              | - saldo      |
+| - telefone   |              | - limite     |
+| - contas []  | ---> Agregação | - extrato   |
+|_____________|              |______________|
+
+
+Encontrar
+criarContacom
+Adicionar
+aqui
+
+Pitão
+
+cópia de
+# Criando um cliente existente
+cliente1 = Cliente("João da Silva", "123.456.789-00", "Rua A, 123", "(11) 99999-9999")
+
+# Criando uma conta bancária para o cliente existente
+conta1 = Conta("001", cliente1)
+
+# Adicionando a nova conta à lista de contas do cliente
+cliente1.adicionar_conta(conta1)
+
+# Criando uma nova conta bancária para o mesmo cliente
+conta2 = Conta("002", cliente1)
+
+# Adicionando a nova conta à lista de contas do cliente
+cliente1.adicionar_conta(conta2)
+
+#implementação de clas
+
+class Cliente:
+    def __init__(self, nome, cpf, endereco, telefone):
+        self.nome = nome
+        self.cpf = cpf
+        self.endereco = endereco
+        self.telefone = telefone
+        self.contas = []
+
+    def adicionar_conta(self, conta):
+        self.contas.append(conta)
+
+
+class Conta:
+    def __init__(self, numero, cliente, saldo=0, limite=500):
+        self.numero = numero
+        self.cliente = cliente
+        self.saldo = saldo
+        self.limite = limite
+        self.extrato = ""
+
+    def depositar(self, valor):
+        if valor > 0:
+            self.saldo += valor
+            self.extrato += f"Depósito: R$ {valor:.2f}\n"
+        else:
+            print("Operação falhou! O valor informado é inválido.")
+
+    def sacar(self, valor):
+        excedeu_saldo = valor > self.saldo
+        excedeu_limite = valor > self.limite
+        if excedeu_saldo:
+            print("Operação falhou! Você não tem saldo suficiente.")
+        elif excedeu_limite:
+            print("Operação falhou! O valor do saque excede o limite.")
+        elif valor > 0:
+            self.saldo -= valor
+            self.extrato += f"Saque: R$ {valor:.2f}\n"
+        else:
+            print("Operação falhou! O valor informado é inválido.")
+
+    def imprimir_extrato(self):
+        print("\n================ EXTRATO ================")
+        print("Não foram realizadas movimentações." if not self.extrato else self.extrato)
+        print(f"\nSaldo: R$ {self.saldo:.2f}")
+        print("==========================================")
+
+
+# Exemplo de uso das classes
+cliente1 = Cliente("João da Silva", "123.456.789-00", "Rua A, 123", "(11) 99999-9999")
+conta1 = Conta("001", cliente1)
+
+cliente1.adicionar_conta(conta1)
+
+conta1.depositar(1000)
+conta1.sacar(500)
+conta1.imprimir_extrato()
